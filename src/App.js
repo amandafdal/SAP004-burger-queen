@@ -1,15 +1,18 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import Register from './views/Register/Register';
+import Login from './views/Login/Login';
+import Home from './views/Home/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome to Burguer Queen! We are building. <>🍔</>
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/register" render={Register} />
+        <Route path="/login" render={Login} />
+        <Route path="/home" render={Home} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
