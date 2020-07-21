@@ -3,6 +3,9 @@ import firebase from '../../firebase';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import serviceRedirect from '../../serviceRedirect';
+import Input from '../../components/Input/Input';
+import SignButton from '../../components/Buttons/SignButton';
+import './Registro.css';
 
 function Register(props) {
   function signUp(e) {
@@ -31,11 +34,11 @@ function Register(props) {
   }
 
   return (
-    <>
+    <main>
       <form onSubmit={signUp}>
-        <input type="text" name="name" autoComplete="nome" placeholder="Nome" />
-        <input type="email" name="email" autoComplete="email" placeholder="E-mail" />
-        <input type="password" name="password" autoComplete="password" placeholder="Password" />
+        <Input label="Name" type="text" name="name" autoComplete="nome" />
+        <Input label="E-mail" type="email" name="email" autoComplete="email" />
+        <Input label="Senha" type="password" name="password" autoComplete="password" />
         <label>
           <input type="radio" name="service" value="atendente" />
           Atendimento
@@ -44,10 +47,10 @@ function Register(props) {
           <input type="radio" name="service" value="chef" />
           Cozinha
         </label>
-        <button type="submit">Entrar</button>
+        <SignButton type="submit" text="Cadastrar" />
       </form>
       <p>Já tem uma conta? <Link to="/login">Faça login</Link></p>
-    </>
+    </main>
   );
 }
 const connectedWithRouter = withRouter(Register);

@@ -1,0 +1,18 @@
+#root,
+body {
+  background-color: #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  background-color: #fff;
+  height: 780px;
+  width: 90%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
