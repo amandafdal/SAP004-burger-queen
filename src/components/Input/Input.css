@@ -1,0 +1,8 @@
+.input{
+    border: 2px solid #F28907;  
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    width: 460px;
+}
