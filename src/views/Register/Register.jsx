@@ -41,7 +41,7 @@ function Register(props) {
         <Input label="Name" type="text" name="name" autoComplete="nome" />
         <Input label="E-mail" type="email" name="email" autoComplete="email" />
         <Input label="Senha" type="password" name="password" autoComplete="password" />
-        <div class="service-opt">
+        <div className="service-opt">
           <label>
             <input type="radio" name="service" value="atendente" />
             Atendimento
