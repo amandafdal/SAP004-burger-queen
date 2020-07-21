@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import serviceRedirect from '../../serviceRedirect';
 import Input from '../../components/Input/Input';
 import SignButton from '../../components/Buttons/SignButton';
+import Logo from '../../img/logo.png';
 import './Registro.css';
 
 function Register(props) {
@@ -35,21 +36,24 @@ function Register(props) {
 
   return (
     <main>
+      <img className="logo" src={Logo} alt="Logo" />
       <form onSubmit={signUp}>
         <Input label="Name" type="text" name="name" autoComplete="nome" />
         <Input label="E-mail" type="email" name="email" autoComplete="email" />
         <Input label="Senha" type="password" name="password" autoComplete="password" />
-        <label>
-          <input type="radio" name="service" value="atendente" />
-          Atendimento
-        </label>
-        <label>
-          <input type="radio" name="service" value="chef" />
-          Cozinha
-        </label>
+        <div class="service-opt">
+          <label>
+            <input type="radio" name="service" value="atendente" />
+            Atendimento
+          </label>
+          <label>
+            <input type="radio" name="service" value="chef" />
+            Cozinha
+          </label>
+        </div>
         <SignButton type="submit" text="Cadastrar" />
       </form>
-      <p>Já tem uma conta? <Link to="/login">Faça login</Link></p>
+      <p>Já tem uma conta? <Link className="link" to="/login">Faça login</Link></p>
     </main>
   );
 }
