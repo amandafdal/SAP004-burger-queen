@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import firebase from '../../firebase';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
+import serviceRedirect from '../../serviceRedirect';
 
 function Register(props) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   function signUp(e) {
     e.preventDefault();
-    const service =  e.currentTarget.service.value;
+
+    const name = e.currentTarget.name.value
+    const email = e.currentTarget.email.value
+    const password = e.currentTarget.password.value
+    const service = e.currentTarget.service.value;
+
     firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(
@@ -19,29 +21,27 @@ function Register(props) {
           firebase.firestore().collection('employee').doc(user).set({
             name: name,
             service: service,
-          }) 
-        }
-      )
+          })
+        })
       .then(
-          () => {
-          props.history.push('./home');
-        }
-      )
+        () => {
+          serviceRedirect(props);
+        })
       .catch();
-    }
-    
+  }
+
   return (
     <>
       <form onSubmit={signUp}>
-        <input type="text" name="name" autoComplete="nome" placeholder="Nome" onChange={(e) => setName(e.target.value)} />
-        <input type="email" name="email" autoComplete="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" name="password" autoComplete="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <input type="text" name="name" autoComplete="nome" placeholder="Nome" />
+        <input type="email" name="email" autoComplete="email" placeholder="E-mail" />
+        <input type="password" name="password" autoComplete="password" placeholder="Password" />
         <label>
-          <input type="radio" name="service" value="Atendimento" /> 
+          <input type="radio" name="service" value="atendente" />
           Atendimento
         </label>
         <label>
-          <input type="radio" name="service" value="Cozinha" /> 
+          <input type="radio" name="service" value="chef" />
           Cozinha
         </label>
         <button type="submit">Entrar</button>
@@ -50,6 +50,5 @@ function Register(props) {
     </>
   );
 }
-
 const connectedWithRouter = withRouter(Register);
 export default connectedWithRouter;
