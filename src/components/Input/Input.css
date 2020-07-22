@@ -5,4 +5,7 @@
     flex-direction: column;
     height: 80px;
     width: 460px;
+    margin: 10px 0px;
+    padding-left: 15px;
+    font-size: 25px;
 }
