@@ -3,8 +3,9 @@ import firebase from '../../firebase';
 import { Link, withRouter } from 'react-router-dom';
 import serviceRedirect from '../../serviceRedirect';
 import Input from '../../components/Input/Input';
+import PasswordInput from '../../components/Input/PasswordInput';
 import SignButton from '../../components/Buttons/SignButton';
-import Logo from '../../img/logo.png';
+import Logo from '../../assets/img/logo.png';
 import ErrorMessage from '../../components/Errors/ErrorMessage';
 import '../../styles/sign.css';
 
@@ -43,7 +44,7 @@ function Register(props) {
       <form className="form-sign" onSubmit={signUp}>
         <Input label="Nome" type="text" name="name" autoComplete="nome" />
         <Input label="E-mail" type="email" name="email" autoComplete="email" />
-        <Input label="Senha" type="password" name="password" autoComplete="password" />
+        <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye"/>
         <div className="service-opt">
           <label>
             <input type="radio" name="service" value="atendente" />

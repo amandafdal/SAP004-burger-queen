@@ -3,9 +3,10 @@ import firebase from '../../firebase';
 import { Link, withRouter } from 'react-router-dom';
 import serviceRedirect from '../../serviceRedirect';
 import Input from '../../components/Input/Input';
+import PasswordInput from '../../components/Input/PasswordInput';
 import SignButton from '../../components/Buttons/SignButton';
 import ErrorMessage from '../../components/Errors/ErrorMessage';
-import Logo from '../../img/logo.png';
+import Logo from '../../assets/img/logo.png';
 import '../../styles/sign.css';
 
 function Login(props) {
@@ -25,7 +26,7 @@ function Login(props) {
       <img className="logo" src={Logo} alt="Logo" />
       <form className="form-sign" onSubmit={signIn}>
         <Input label = "E-mail"type="email" name="email" autoComplete="email" />
-        <Input label = "Senha"type="password" name="password" autoComplete="password" />
+        <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye"/>
         {err ? <ErrorMessage text="Email e/ou senha incorretos."/> : ''}
         <SignButton type="submit" text="Entrar" /> 
       </form>
