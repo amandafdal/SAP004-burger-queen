@@ -1,7 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase';
-import { Link } from "react-router-dom";
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import serviceRedirect from '../../serviceRedirect';
 import Input from '../../components/Input/Input';
 import SignButton from '../../components/Buttons/SignButton';
@@ -38,7 +37,7 @@ function Register(props) {
     <main>
       <img className="logo" src={Logo} alt="Logo" />
       <form onSubmit={signUp}>
-        <Input label="Name" type="text" name="name" autoComplete="nome" />
+        <Input label="Nome" type="text" name="name" autoComplete="nome" />
         <Input label="E-mail" type="email" name="email" autoComplete="email" />
         <Input label="Senha" type="password" name="password" autoComplete="password" />
         <div className="service-opt">
