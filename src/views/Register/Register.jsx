@@ -5,7 +5,7 @@ import serviceRedirect from '../../serviceRedirect';
 import Input from '../../components/Input/Input';
 import SignButton from '../../components/Buttons/SignButton';
 import Logo from '../../img/logo.png';
-import './Registro.css';
+import '../../styles/sign.css';
 
 function Register(props) {
   function signUp(e) {
@@ -34,9 +34,9 @@ function Register(props) {
   }
 
   return (
-    <main>
+    <main className="main-signup">
       <img className="logo" src={Logo} alt="Logo" />
-      <form onSubmit={signUp}>
+      <form className="form-sign" onSubmit={signUp}>
         <Input label="Nome" type="text" name="name" autoComplete="nome" />
         <Input label="E-mail" type="email" name="email" autoComplete="email" />
         <Input label="Senha" type="password" name="password" autoComplete="password" />
@@ -52,7 +52,7 @@ function Register(props) {
         </div>
         <SignButton type="submit" text="Cadastrar" />
       </form>
-      <p>Já tem uma conta? <Link className="link" to="/login">Faça login</Link></p>
+      <p className="sign-redirect">Já tem uma conta? <Link className="link" to="/login">Faça login</Link></p>
     </main>
   );
 }
