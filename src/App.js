@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Register from './views/Register/Register';
-import Login from './views/Login/Login';
-import HomeKitchen from './views/HomeKitchen/HomeKitchen';
-import HomeAttendence from './views/HomeAttendence/HomeAttendence';
+import Register from './views/Register';
+import Login from './views/Login';
+import HomeKitchen from './views/HomeKitchen';
+import HomeAttendence from './views/HomeAttendence';
 
 function App() {
   return (
