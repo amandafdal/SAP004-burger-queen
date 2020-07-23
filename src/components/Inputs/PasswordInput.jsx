@@ -30,11 +30,11 @@ const PasswordInput = (props) => {
 
   const changeVisibility = hidden => {
     if (hidden === true) {
-      setIcon('icon-eye-blocked')
+      setIcon('icon-eye-blocked');
       setHidden(false);
     } else {
-      setIcon('icon-eye')
-      setHidden(true)
+      setIcon('icon-eye');
+      setHidden(true);
     }
   };
 
@@ -44,7 +44,7 @@ const PasswordInput = (props) => {
       type={hidden ? "password" : "text"}
       name={props.name}
       autoComplete={props.autoComplete}
-      placeholder={props.placeholder} />
+      placeholder={props.placeholder} required />
   </Label>
 }
 

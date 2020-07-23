@@ -33,7 +33,7 @@ const Paragraph = styled.p`
   color: #0D0D0D;
   font-size: 25px;
   font-weight: 900;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
 `;
 
 const STyledLink = styled(Link)`

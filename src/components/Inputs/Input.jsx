@@ -19,7 +19,7 @@ const Input = (props) => <label> {props.label}
     type={props.type}
     name={props.name}
     autoComplete={props.autoComplete}
-    placeholder={props.placeholder} />
+    placeholder={props.placeholder} required />
 </label>;
 
 export default Input;

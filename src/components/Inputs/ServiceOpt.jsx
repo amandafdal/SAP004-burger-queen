@@ -8,6 +8,7 @@ const StyledOpt = styled.div`
 
   label{
     display: flex;
+  }
 
   input{
     appearance: none;
@@ -17,20 +18,24 @@ const StyledOpt = styled.div`
     border-radius: 50%;
     border: 2px solid  #F28907;
     transition: 0.2s all linear;
-    background-color: { checked ? #F28907 : #FFF } /* corrigir ternário */
+  }
+
+  input:checked {
+    background-color: #F28907; 
+  }
 `;
 
 const ServiceOpt = () => {
   return <StyledOpt>
-  <label>
-    <input type="radio" name="service" value="atendente" />
+    <label>
+      <input type="radio" name="service" value="atendente" required />
     Atendimento
   </label>
-  <label>
-    <input type="radio" name="service" value="chef" />
+    <label>
+      <input type="radio" name="service" value="chef" />
     Cozinha
   </label>
-</StyledOpt>;
+  </StyledOpt>;
 }
 
 export default ServiceOpt;
