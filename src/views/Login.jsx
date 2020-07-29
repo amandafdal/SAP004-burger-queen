@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import firebase from '../firebase';
 import { Link, withRouter } from 'react-router-dom';
 import serviceRedirect from '../serviceRedirect';
@@ -8,6 +8,14 @@ import SignButton from '../components/Buttons/SignButton';
 import ErrorMessage from '../components/Errors/ErrorMessage';
 import Logo from '../components/Logos/Logo';
 import styled from 'styled-components';
+
+const Root = styled.div`
+  background-color: #0d0d0d;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+`;
 
 const SignIn = styled.main`
   background-color: #fff;
@@ -47,21 +55,23 @@ function Login(props) {
     const password = e.currentTarget.password.value;
 
     firebase.auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() => serviceRedirect(props))
-    .catch(() => setError(true));
+      .signInWithEmailAndPassword(email, password)
+      .then(() => serviceRedirect(props))
+      .catch(() => setError(true));
   }
   return (
-    <SignIn>
-      <Logo />
-      <Form onSubmit={signIn}>
-        <Input label="E-mail" type="email" name="email" autoComplete="email" />
-        <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye"/>
-        {err ? <ErrorMessage text="Email e/ou senha incorretos."/> : ''}
-        <SignButton type="submit" text="Entrar" /> 
-      </Form>
-      <Paragraph> Não tem uma conta? <STyledLink to="/register">Cadastre-se</STyledLink></Paragraph>
-    </SignIn>
+    <Root>
+      <SignIn>
+        <Logo />
+        <Form onSubmit={signIn}>
+          <Input label="E-mail" type="email" name="email" autoComplete="email" />
+          <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" />
+          {err ? <ErrorMessage text="Email e/ou senha incorretos." /> : ''}
+          <SignButton type="submit" text="Entrar" />
+        </Form>
+        <Paragraph> Não tem uma conta? <STyledLink to="/register">Cadastre-se</STyledLink></Paragraph>
+      </SignIn>
+    </Root>
   );
 }
 const connectedWithRouter = withRouter(Login);
