@@ -1,5 +1,6 @@
-import React from 'react';
-import Header from '../components/Header'
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+import Header from '../components/Header';
 import firebase from '../firebase';
 import styled from 'styled-components';
 
@@ -9,46 +10,103 @@ const Root = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  li,
+  a {
+    font-size: 30px;
+    color: white;
+  }
 `;
 
 function Home() {
-  const getBreakfast = () => {
-    firebase.firestore().collection('breakfast').get().then(
-      (querySnapshot) => querySnapshot.forEach(
-        (doc) => console.log("Item: ", doc.data().Item ,  "R$:", doc.data().Valor)
-      )
-    )
-  };
-  getBreakfast();
+  const [categories, setCategories] = useState([]);
+  const [menu, setMenu] = useState({});
+  const [cart, setCart] = useState({});
 
-  const getBurgers = () => {
-    firebase.firestore().collection('all-day').where('Categoria', '==', 'Hambúrguer').get().then(
-      (querySnapshot) => querySnapshot.forEach(
-        (doc) => console.log("Item: ", doc.data().Item ,  "R$:", doc.data().Valor)
-      )
-    )
-  };
-  getBurgers();
-  
-  const getToppings = () => {
-    firebase.firestore().collection('all-day').where('Categoria', '==', 'Adicionais').get().then(
-      (querySnapshot) => querySnapshot.forEach(
-        (doc) => console.log("Item: ", doc.data().Item ,  "R$:", doc.data().Valor)
-      )
-    )
-  };
-  getToppings();
+  useEffect(
+    () => {
+      const getFoods = () => {
+        firebase
+          .firestore()
+          .collection('foods')
+          .get()
+          .then(
+            (querySnapshot) => {
+              const allCategories = Array.from(
+                new Set([...querySnapshot.docs.map(item => item.data().categoria)])
+              );
 
-  const getSideDisches = () => {
-    firebase.firestore().collection('all-day').where('Categoria', '==', 'Acompanhamentos').get().then(
-      (querySnapshot) => querySnapshot.forEach(
-        (doc) => console.log("Item: ", doc.data().Item ,  "R$:", doc.data().Valor)
-      )
-    )
+              setCategories(allCategories);
+
+              const groupMenu = allCategories.reduce((acc, cur) => {
+                acc[cur] = querySnapshot.docs
+                  .filter(item => cur === item.data().categoria);
+                return acc;
+              }, {});
+
+              setMenu(groupMenu);
+            }
+          )
+      };
+      getFoods();
+    }, [setCategories, setMenu]
+  );
+
+  const addToCart = (item) => {
+    let product;
+
+    if (item.id in cart) {
+      const itemCart = cart[item.id];
+      product = {
+        ...cart,
+        [item.id]: {
+          ...itemCart,
+          quantidade: parseInt(itemCart.quantidade) + 1
+        }
+      }
+    } else {
+      product = {
+        ...cart,
+        [item.id]: {
+          nome: item.data().nome,
+          nome: item.data().valor,
+          quantidade: 1,
+        }
+      }
+    }
+
+    setCart(product);
   };
-  getSideDisches();
 
+  const delFromCart = (item) => {
+    let product;
 
+    if (item.id in cart && cart[item.id].quantidade > 0) {
+      const itemCart = cart[item.id];
+      product = {
+        ...cart,
+        [item.id]: {
+          ...itemCart,
+          quantidade: itemCart.quantidade - 1
+        }
+      }
+    } else {
+      product = { ...cart }
+      delete product[item.id]
+    }
+
+    setCart(product);
+  };
+
+  const setAmount = (item, value) => {
+    setCart({
+      ...cart,
+      [item.id]: {
+        nome: item.data().nome,
+        quantidade: value,
+      }
+    })
+  }
 
   return (
     <Root>
@@ -56,41 +114,50 @@ function Home() {
       <main>
         <nav>
           <ul>
-            <li>
-              <a href="#breakfast">Café da manhã</a>
-            </li>
-            <li>
-              <a href="#burgers">Hambúrguer</a>
-            </li>
-            <li>
-              <a href="#toppings">Adicionais</a>
-            </li>
-            <li>
-              <a href="#side-dishes">Acompanhamentos</a>
-            </li>
-            <li>
-              <a href="#drinks">Bebidas</a>
-            </li>
+            {
+              categories.map(
+                (item) => (
+                  <li>
+                    <a href={`#${item}`}>{item}</a>
+                  </li>
+                )
+              )
+            }
           </ul>
         </nav>
-        <section>
-          <ul id="breakfast"></ul>
-          {/* criar LIs usando um forEach firebase  render() 
-            <p>  props.texto = = itemvalue</p>
-            <p> props.price = = valorvalue</p>
-            < Counter <btn- contador numerico btn +/>
-            */}
-          <ul id="burgers"></ul>
-          <ul id="toppings"></ul>
-          <ul id="side-dishes"></ul>
-          <ul id="#drinks"></ul>
+        <section id="menu">
+          {
+            Object.keys(menu).map(
+              (key) => (
+                <ul id={key}>
+                  {
+                    menu[key].map(
+                      (item) => (
+                        <li>
+                          {item.data().nome}
+                          {item.data().valor}
+                          <button type="button" onClick={() => addToCart(item)}>Adicionar</button>
+                          <input
+                            type="number"
+                            value={cart[item.id] && cart[item.id].quantidade || 0}
+                            onChange={(e) => setAmount(item, e.currentTarget.value)}
+                          />
+                          <button type="button" onClick={() => delFromCart(item)}>remover</button>
+                        </li>
+                      )
+                    )
+                  }
+                </ul>
+              )
+            )
+          }
         </section>
-        <section>
-          {/* order-resume */}
-        </section>
+        <section id="order-resume"></section>
       </main>
     </Root>
   );
 }
 
-export default Home;
+const connectedWithRouter = withRouter(Home);
+
+export default connectedWithRouter;
