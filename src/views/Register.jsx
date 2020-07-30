@@ -51,7 +51,7 @@ const STyledLink = styled(Link)`
 
 
 function Register(props) {
-  let [err, setError] = useState(false);
+  const [err, setError] = useState(false);
 
   function signUp(e) {
     e.preventDefault();

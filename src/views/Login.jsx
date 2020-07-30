@@ -48,7 +48,7 @@ const STyledLink = styled(Link)`
 `;
 
 function Login(props) {
-  let [err, setError] = useState(false);
+  const [err, setError] = useState(false);
   function signIn(e) {
     e.preventDefault();
     const email = e.currentTarget.email.value;
