@@ -8,7 +8,7 @@ import OrderResume from '../components/OrderResume';
 const Root = styled.div`
   background-color: #0d0d0d;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
