@@ -1,5 +1,25 @@
 import React, { useState } from 'react';
 import CounterButton from './CounterButton';
+import styled from 'styled-components';
+
+const CounterInput = styled.input`
+  background-color: #F2B90C;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  color: #0d0d0d;
+  font-size: 40px;
+  font-weight: 700;
+  width: 60px;
+  height: 46px;
+  margin: 5px;
+  text-align: center;
+  ::-webkit-inner-spin-button, 
+  ::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+`;
 
 const Counter = (props) => {
   const [cart, setCart] = useState({});
@@ -58,13 +78,13 @@ const Counter = (props) => {
 
   return (
     <>
-    < CounterButton handleClick={() => addToCart(props.item)} value='Adicionar'/>
-    <input
+    < CounterButton handleClick={() => addToCart(props.item)} value='+'/>
+    <CounterInput
       type="number" min = "0"
-      value={(cart[props.item.id] && cart[props.item.id].quantidade) || 0}
+      value={(cart[props.item.id] && cart[props.item.id].quantidade) || 0} 
       onChange={(e) => setAmount(props.item, e.currentTarget.value)}
     />
-    < CounterButton handleClick={() => delFromCart(props.item)} value='Remover'/>
+    < CounterButton handleClick={() => delFromCart(props.item)} value='-'/>
     </>
   )
 }
