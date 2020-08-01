@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
-import OrderResume from '../components/OrderResume';
 
 const Root = styled.div`
   background-color: #0d0d0d;
@@ -25,7 +24,6 @@ function Home() {
       <Header />
       <main>
         < Menu />
-        < OrderResume />
       </main>
     </Root>
   );
