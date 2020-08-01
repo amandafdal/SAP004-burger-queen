@@ -104,7 +104,7 @@ const Menu = () => {
 
   const delFromCart = (item) => {
     let product;
-    if (item.id in cart && cart[item.id].quantidade > 0) {
+    if (item.id in cart && cart[item.id].quantidade > 1) {
       const itemCart = cart[item.id];
       product = {
         ...cart,
