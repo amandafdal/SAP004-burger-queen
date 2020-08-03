@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase';
-/* import NavMenu from '../components/NavMenu'; */
 import Counter from '../Counter/Counter';
 import styled from 'styled-components';
 import CounterButton from '../Counter/CounterButton';
-import OrderResume from '../OrderResume';
+import OrderContainer from './OrderContainer';
 import OrderInput from '../Inputs/OrderInput';
 import CancelButton from '../Buttons/CancelButton'
 import ConfirmButton from '../Buttons/ConfirmButton'
 import ErrorMessage from '../Messages/ErrorMessage';
+import MenuContainer from '../Containers/MenuContainer';
 
-const Section = styled.section`
+const Main = styled.main`
   width: 100%;
   height: fit-content;
   padding-top: 20px;
@@ -19,38 +19,10 @@ const Section = styled.section`
   align-items: center;
 `;
 
-const MenuContainer = styled.section`
-  width: 80%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  margin: 20px;
-  border-radius: 50px 50px 0px 0px;
-  border: 10px solid #F2B90C;
-`;
-
-const MenuTitle = styled.p`
-  background-color: #F2B90C;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  border-radius: 40px 40px 0px 0px;
-  font-size: 30px;
-  font-weight: 700;
-`;
-
-const MenuCategory = styled.p`
-  font-size: 24px;
-  font-weight: 700;
-`;
-
 const Extras = styled.td`
   width: 80px!important;
   display: flex;
   flex-direction: column;
-
   label {
     display: flex;
     justify-content: space-between;
@@ -251,9 +223,9 @@ const Menu = () => {
   }
   return (
     <>
-      <Section>
+      <Main>
         <MenuContainer>
-          <MenuTitle>CAFÉ DA MANHÃ</MenuTitle>
+          <h1>CAFÉ DA MANHÃ</h1>
           {Object.keys(menu).map(
             (key) => (
               key === 'breakfast' &&
@@ -281,12 +253,12 @@ const Menu = () => {
           }
         </MenuContainer>
         <MenuContainer>
-          <MenuTitle>MENU PRINCIPAL</MenuTitle>
+          <h1>MENU PRINCIPAL</h1>
           {Object.keys(menu).map(
             (key) => (
               key !== 'breakfast' &&
               <>
-                <MenuCategory>{key}</MenuCategory>
+                <h2>{key}</h2>
                 <MenuTable id={key}>
                   <tbody>
                     {menu[key].map((item) => (
@@ -310,7 +282,7 @@ const Menu = () => {
           )
           }
         </MenuContainer>
-        <OrderResume>
+        <OrderContainer>
           <form onSubmit={saveOrder}>
             <div>
               <OrderInput label="Cliente:" type="text" name="Cliente" />
@@ -327,8 +299,8 @@ const Menu = () => {
               <ConfirmButton type="submit" value='Confirmar' />
             </div>
           </form>
-        </OrderResume>
-      </Section>
+        </OrderContainer>
+      </Main>
     </>
 
   )

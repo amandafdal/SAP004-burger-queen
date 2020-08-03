@@ -20,10 +20,10 @@ const StyledContainer = styled.section`
 `;
 
 
-const OrderResume = (props) => {
+const OrderContainer = (props) => {
   return (
     <StyledContainer id="order-resume"> {props.children}</StyledContainer>
   )
 }
 
-export default OrderResume;
+export default OrderContainer;
