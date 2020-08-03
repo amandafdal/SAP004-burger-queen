@@ -8,7 +8,7 @@ import OrderResume from './OrderResume';
 import OrderInput from './Inputs/OrderInput';
 import CancelButton from './Buttons/CancelButton'
 import ConfirmButton from './Buttons/ConfirmButton'
-import ErrorMessage from './Errors/ErrorMessage';
+import ErrorMessage from './Messages/ErrorMessage';
 
 const Section = styled.section`
   width: 100%;

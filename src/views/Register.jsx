@@ -7,7 +7,7 @@ import Input from '../components/Inputs/Input';
 import PasswordInput from '../components/Inputs/PasswordInput';
 import ServiceOpt from '../components/Inputs/ServiceOpt';
 import SignButton from '../components/Buttons/SignButton';
-import ErrorMessage from '../components/Errors/ErrorMessage';
+import ErrorMessage from '../components/Messages/ErrorMessage';
 import Logo from '../components/Logos/Logo';
 import Root from '../components/Containers/Root';
 import SignForm from '../components/Containers/SignForm';
