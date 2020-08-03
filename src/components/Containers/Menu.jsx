@@ -51,7 +51,7 @@ const MenuTable = styled.table`
   }
 `;
 
-const MenuOrder = styled.table`
+const OrderTable = styled.table`
   padding: 10px;
   font-size: 20px;
   font-weight: 600;
@@ -289,11 +289,11 @@ const Menu = () => {
               <OrderInput label="Mesa:" type="number" name="Mesa" />
             </div>
             {emptyCart ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
-            <MenuOrder>
+            <OrderTable>
               <tbody>
                 {printOrder()}
               </tbody>
-            </MenuOrder>
+            </OrderTable>
             <div>
               <CancelButton type="reset" value='Cancelar' handleClick={() => setCart({})} />
               <ConfirmButton type="submit" value='Confirmar' />
