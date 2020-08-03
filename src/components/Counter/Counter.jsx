@@ -7,10 +7,10 @@ const CounterInput = styled.input`
   border: none;
   border-radius: 10px;
   color: #0d0d0d;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 700;
-  width: 60px;
-  height: 46px;
+  width: 40px;
+  height: 30px;
   margin: 5px;
   text-align: center;
   ::-webkit-inner-spin-button, 

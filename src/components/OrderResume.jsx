@@ -9,7 +9,7 @@ const StyledContainer = styled.section`
   width: max-content;
   height: fit-content;
   margin: 20px;
-  padding: 20px;
+  padding: 5px;
   border-radius: 20px;
   border: 10px solid #F2B90C;
   form{
@@ -21,8 +21,8 @@ const StyledContainer = styled.section`
 
 
 const OrderResume = (props) => {
-  return(
-  <StyledContainer id="order-resume"> {props.children}</StyledContainer>
+  return (
+    <StyledContainer id="order-resume"> {props.children}</StyledContainer>
   )
 }
 

@@ -7,10 +7,10 @@ const CounterBtn = styled.button`
   border: none;
   border-radius: 50px;
   color: #0d0d0d;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 700;
-  width: 46px;
-  height: 46px;
+  width: 30px;
+  height: 30px;
   margin: 5px;
   cursor: pointer;
 `;

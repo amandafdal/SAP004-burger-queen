@@ -46,23 +46,61 @@ const MenuCategory = styled.p`
   font-weight: 700;
 `;
 
+const Extras = styled.td`
+  width: 80px!important;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const Amount = styled.td`
+  width: 50px!important;
+`;
+
 const MenuTable = styled.table`
   padding: 10px;
   font-size: 20px;
   font-weight: 600;
+  width: 100%;
   tr {
-    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
   }
   td {
     padding: 0px 10px;
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+  }
+`;
+
+const MenuOrder = styled.table`
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 100%;
+  tr {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  td {
+    display: inline-block;
+    text-align: center;
+    width: 160px;
   }
 `;
 
 const Menu = () => {
-  /* const [categories, setCategories] = useState([]); */
   const [menu, setMenu] = useState({});
   const [cart, setCart] = useState({});
-  const [emptyCart, setEmpty] = useState(false);
 
   const getFoods = () => {
     firebase.firestore().collection('foods').get()
@@ -76,13 +114,12 @@ const Menu = () => {
               .filter(item => cur === item.data().categoria);
             return acc;
           }, {});
-          /* setCategories(allCategories); */
           setMenu(groupMenu);
         }
       )
   };
 
-  useEffect(() => getFoods(), [/* setCategories,  */setMenu]);
+  useEffect(() => getFoods(), [setMenu]);
 
   const addToCart = (item) => {
     let product;
@@ -99,13 +136,11 @@ const Menu = () => {
       product = {
         ...cart,
         [item.id]: {
-          nome: item.data().nome,
-          valor: item.data().valor,
-          quantidade: 1,
+          ...item.data(),
+          quantidade: 1
         }
       }
     }
-    setEmpty(false)
     setCart(product);
   };
 
@@ -137,16 +172,49 @@ const Menu = () => {
     })
   }
 
+  const setExtra = (item, extra, checked) => {
+    setCart({
+      ...cart,
+      [item]: {
+        ...cart[item],
+        valor: checked ? cart[item].valor + 1 : cart[item].valor - 1,
+        adicionais: {
+          ...cart[item].adicionais,
+          [extra]: checked
+        }
+      }
+    })
+  }
+
   const printOrder = () => {
     let line = [];
     let valor = [];
     let content = []
+
     for (const item in cart) {
       valor.push(cart[item].quantidade * cart[item].valor);
       line.push(
         <tr>
-          <td>{cart[item].quantidade}x</td>
+          <Amount>{cart[item].quantidade}x</Amount>
           <td>{cart[item].nome}</td>
+          <Extras>
+            {
+              cart[item].categoria === 'hambúrguer' && cart[item].adicionais &&
+              Object
+                .keys(
+                  cart[item].adicionais
+                )
+                .map((adicional) => (
+                  <label>
+                    {adicional}
+                    <input
+                      type="checkbox"
+                      checked={cart[item].adicionais[adicional]}
+                      onChange={(e) => setExtra(item, adicional, e.currentTarget.checked)} />
+                  </label>
+                ))
+            }
+          </Extras>
           <td>R$ {cart[item].quantidade * cart[item].valor},00</td>
         </tr>
       )
@@ -161,26 +229,23 @@ const Menu = () => {
     return content;
   }
 
-  const saveOrder = (e) =>{
+  const saveOrder = (e) => {
     e.preventDefault()
     const cliente = e.currentTarget.Cliente.value;
-    const mesa= e.currentTarget.Mesa.value;
+    const mesa = e.currentTarget.Mesa.value;
 
-    Object.keys(cart).length === 0
-    ? setEmpty(true)
-    :firebase.firestore().collection('orders').doc().set({
+    firebase.firestore().collection('orders').doc().set({
       cliente: cliente,
       mesa: mesa,
       pedido: cart,
       status: 'preparando',
       orderTime: new Date(),
-      deliverTime: null ,
+      deliverTime: null,
     })
-    .then(() => setCart({}))
+      .then(() => setCart({}))
   }
   return (
     <>
-      {/* <NavMenu cat={categories} /> */}
       <Section>
         <MenuContainer>
           <MenuTitle>CAFÉ DA MANHÃ</MenuTitle>
@@ -214,7 +279,7 @@ const Menu = () => {
           <MenuTitle>MENU PRINCIPAL</MenuTitle>
           {Object.keys(menu).map(
             (key) => (
-              key !== 'breakfast' && key !== 'adicionais' &&
+              key !== 'breakfast' &&
               <>
                 <MenuCategory>{key}</MenuCategory>
                 <MenuTable id={key}>
@@ -224,13 +289,13 @@ const Menu = () => {
                         <td>{item.data().nome}</td>
                         <td>R$ {item.data().valor}</td>
                         <td>
-                        < CounterButton handleClick={() => addToCart(item)} value='+' />
-                        <Counter
-                          value={(cart[item.id] && cart[item.id].quantidade) || 0}
-                          handleChange={(e) => setAmount(item, e.currentTarget.value)}
-                        />
-                        < CounterButton handleClick={() => delFromCart(item)} value='-' />
-                      </td>
+                          <CounterButton handleClick={() => addToCart(item)} value='+' />
+                          <Counter
+                            value={(cart[item.id] && cart[item.id].quantidade) || 0}
+                            handleChange={(e) => setAmount(item, e.currentTarget.value)}
+                          />
+                          <CounterButton handleClick={() => delFromCart(item)} value='-' />
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -242,25 +307,25 @@ const Menu = () => {
         </MenuContainer>
         <OrderResume>
           <form onSubmit={saveOrder}>
-            <div> 
-              <OrderInput label="Cliente:" type="text" name="Cliente" /> 
-              <OrderInput label="Mesa:" type="number" name="Mesa" /> 
-            </div>
-            {emptyCart ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
-            <MenuTable>
-              <tbody>
-                {printOrder ()}
-              </tbody>
-            </MenuTable>
             <div>
-              <CancelButton type="reset" value='Cancelar' handleClick={() => setCart({})}/>
-              <ConfirmButton type="submit" value='Confirmar'/>
+              <OrderInput label="Cliente:" type="text" name="Cliente" />
+              <OrderInput label="Mesa:" type="number" name="Mesa" />
+            </div>
+            {Object.keys(cart).length === 0 ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
+            <MenuOrder>
+              <tbody>
+                {printOrder()}
+              </tbody>
+            </MenuOrder>
+            <div>
+              <CancelButton type="reset" value='Cancelar' handleClick={() => setCart({})} />
+              <ConfirmButton type="submit" value='Confirmar' />
             </div>
           </form>
         </OrderResume>
       </Section>
     </>
-    
+
   )
 }
 

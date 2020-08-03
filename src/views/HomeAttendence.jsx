@@ -23,7 +23,7 @@ function Home() {
     <Root>
       <Header />
       <main>
-        < Menu />
+        <Menu />
       </main>
     </Root>
   );
