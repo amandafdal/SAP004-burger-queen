@@ -4,6 +4,11 @@ import firebase from '../firebase';
 import Counter from './Counter/Counter';
 import styled from 'styled-components';
 import CounterButton from '../components/Counter/CounterButton';
+import OrderResume from './OrderResume';
+import OrderInput from './Inputs/OrderInput';
+import CancelButton from './Buttons/CancelButton'
+import ConfirmButton from './Buttons/ConfirmButton'
+import ErrorMessage from './Errors/ErrorMessage';
 
 const Section = styled.section`
   width: 100%;
@@ -57,6 +62,7 @@ const Menu = () => {
   /* const [categories, setCategories] = useState([]); */
   const [menu, setMenu] = useState({});
   const [cart, setCart] = useState({});
+  const [emptyCart, setEmpty] = useState(false);
 
   const getFoods = () => {
     firebase.firestore().collection('foods').get()
@@ -99,6 +105,7 @@ const Menu = () => {
         }
       }
     }
+    setEmpty(false)
     setCart(product);
   };
 
@@ -130,8 +137,47 @@ const Menu = () => {
     })
   }
 
-  console.log(cart)
+  const printOrder = () => {
+    let line = [];
+    let valor = [];
+    let content = []
+    for (const item in cart) {
+      valor.push(cart[item].quantidade * cart[item].valor);
+      line.push(
+        <tr>
+          <td>{cart[item].quantidade}x</td>
+          <td>{cart[item].nome}</td>
+          <td>R$ {cart[item].quantidade * cart[item].valor},00</td>
+        </tr>
+      )
+    }
+    content.push(line);
+    content.push(
+      <tr>
+        <td colSpan="3">Total: R$ {valor.reduce((acc, cur) => acc + cur, 0)},00</td>
+      </tr>
+    )
 
+    return content;
+  }
+
+  const saveOrder = (e) =>{
+    e.preventDefault()
+    const cliente = e.currentTarget.Cliente.value;
+    const mesa= e.currentTarget.Mesa.value;
+
+    Object.keys(cart).length === 0
+    ? setEmpty(true)
+    :firebase.firestore().collection('orders').doc().set({
+      cliente: cliente,
+      mesa: mesa,
+      pedido: cart,
+      status: 'preparando',
+      orderTime: new Date(),
+      deliverTime: null ,
+    })
+    .then(() => setCart({}))
+  }
   return (
     <>
       {/* <NavMenu cat={categories} /> */}
@@ -194,8 +240,27 @@ const Menu = () => {
           )
           }
         </MenuContainer>
+        <OrderResume>
+          <form onSubmit={saveOrder}>
+            <div> 
+              <OrderInput label="Cliente:" type="text" name="Cliente" /> 
+              <OrderInput label="Mesa:" type="number" name="Mesa" /> 
+            </div>
+            {emptyCart ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
+            <MenuTable>
+              <tbody>
+                {printOrder ()}
+              </tbody>
+            </MenuTable>
+            <div>
+              <CancelButton type="reset" value='Cancelar' handleClick={() => setCart({})}/>
+              <ConfirmButton type="submit" value='Confirmar'/>
+            </div>
+          </form>
+        </OrderResume>
       </Section>
     </>
+    
   )
 }
 
