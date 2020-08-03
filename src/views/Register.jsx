@@ -10,6 +10,7 @@ import SignButton from '../components/Buttons/SignButton';
 import ErrorMessage from '../components/Errors/ErrorMessage';
 import Logo from '../components/Logos/Logo';
 import Root from '../components/Containers/Root';
+import SignForm from '../components/Containers/SignForm';
 
 const SignUp = styled.main`
   background-color: #fff;
@@ -20,14 +21,6 @@ const SignUp = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  color: #0D0D0D;
-  font-size: 25px;
-  font-weight: 900;
 `;
 
 const Paragraph = styled.p`
@@ -75,14 +68,14 @@ function Register(props) {
     <Root>
       <SignUp>
         <Logo />
-        <Form onSubmit={signUp}>
+        <SignForm handleSubmit={signUp}>
           <Input label="Nome" type="text" name="name" autoComplete="nome" />
           <Input label="E-mail" type="email" name="email" autoComplete="email" />
           <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" />
           <ServiceOpt />
           {err ? <ErrorMessage text="Favor insira seu e-mail corporativo." /> : ''}
           <SignButton type="submit" text="Cadastrar" />
-        </Form>
+        </SignForm>
         <Paragraph>Já tem uma conta? <STyledLink to="/login">Faça login</STyledLink></Paragraph>
       </SignUp>
     </Root>
