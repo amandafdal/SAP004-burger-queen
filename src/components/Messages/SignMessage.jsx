@@ -14,5 +14,5 @@ const STyledLink = styled(Link)`
 `;
 
 const SignMessage = (props) =>  <Paragraph> <p>{props.text} <STyledLink to={props.link}>{props.linkText}</STyledLink></p> </Paragraph>;
-/* <Paragraph> Não tem uma conta? <STyledLink to="/register">Cadastre-se</STyledLink></Paragraph> */
+
 export default SignMessage;
