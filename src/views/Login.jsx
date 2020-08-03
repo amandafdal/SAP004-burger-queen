@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import firebase from '../firebase';
 import { Link, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import serviceRedirect from '../serviceRedirect';
 import Input from '../components/Inputs/Input';
 import PasswordInput from '../components/Inputs/PasswordInput';
 import SignButton from '../components/Buttons/SignButton';
 import ErrorMessage from '../components/Errors/ErrorMessage';
 import Logo from '../components/Logos/Logo';
-import styled from 'styled-components';
-
-const Root = styled.div`
-  background-color: #0d0d0d;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-`;
+import Root from '../components/Containers/Root';
 
 const SignIn = styled.main`
   background-color: #fff;
