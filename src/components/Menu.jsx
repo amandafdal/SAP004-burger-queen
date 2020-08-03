@@ -102,6 +102,7 @@ const MenuOrder = styled.table`
 const Menu = () => {
   const [menu, setMenu] = useState({});
   const [cart, setCart] = useState({});
+  const [emptyCart, setEmpty] = useState(false);
 
   const getFoods = () => {
     firebase.firestore().collection('foods').get()
@@ -142,6 +143,7 @@ const Menu = () => {
         }
       }
     }
+    setEmpty(false)
     setCart(product);
   };
 
@@ -235,15 +237,17 @@ const Menu = () => {
     const cliente = e.currentTarget.Cliente.value;
     const mesa = e.currentTarget.Mesa.value;
 
-    firebase.firestore().collection('orders').doc().set({
+    Object.keys(cart).length === 0
+    ? setEmpty(true)
+    :firebase.firestore().collection('orders').doc().set({
       cliente: cliente,
       mesa: mesa,
       pedido: cart,
       status: 'preparando',
       orderTime: new Date(),
-      deliverTime: null,
+      deliverTime: null ,
     })
-      .then(() => setCart({}))
+    .then(() => setCart({}))
   }
   return (
     <>
@@ -312,7 +316,7 @@ const Menu = () => {
               <OrderInput label="Cliente:" type="text" name="Cliente" />
               <OrderInput label="Mesa:" type="number" name="Mesa" />
             </div>
-            {Object.keys(cart).length === 0 ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
+            {emptyCart ? <ErrorMessage text="Seu pedido está vazio" /> : ''}
             <MenuOrder>
               <tbody>
                 {printOrder()}
