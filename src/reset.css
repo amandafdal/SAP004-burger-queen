@@ -14,18 +14,6 @@ a {
   text-decoration: none;
 }
 
-body, #root {
-  height: 100vh;
-  width: 100%;
-}
-
 input {
   outline: none;
-}
-
-#root,
-body {
-  background-color: #0d0d0d;
-  display: flex;
-  justify-content: center;
 }
