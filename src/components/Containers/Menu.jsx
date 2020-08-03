@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import firebase from '../firebase';
+import firebase from '../../firebase';
 /* import NavMenu from '../components/NavMenu'; */
-import Counter from './Counter/Counter';
+import Counter from '../Counter/Counter';
 import styled from 'styled-components';
-import CounterButton from '../components/Counter/CounterButton';
-import OrderResume from './OrderResume';
-import OrderInput from './Inputs/OrderInput';
-import CancelButton from './Buttons/CancelButton'
-import ConfirmButton from './Buttons/ConfirmButton'
-import ErrorMessage from './Messages/ErrorMessage';
+import CounterButton from '../Counter/CounterButton';
+import OrderResume from '../OrderResume';
+import OrderInput from '../Inputs/OrderInput';
+import CancelButton from '../Buttons/CancelButton'
+import ConfirmButton from '../Buttons/ConfirmButton'
+import ErrorMessage from '../Messages/ErrorMessage';
 
 const Section = styled.section`
   width: 100%;
