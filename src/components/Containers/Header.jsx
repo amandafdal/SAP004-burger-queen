@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
-import firebase from '../firebase';
-import Logo from '../assets/img/logo-header1.png';
-import SignOutIcon from '../assets/icons/SignOutIcon.png';
+import firebase from '../../firebase';
+import Logo from '../../assets/img/logo-header1.png';
+import SignOutIcon from '../../assets/icons/SignOutIcon.png';
 
 const StyledHeader = styled.header`
   position: relative;
