@@ -89,7 +89,8 @@ const MenuOrder = styled.table`
     justify-content: space-between;
     height: auto;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #0d0d0d;
   }
   td {
     display: inline-block;
