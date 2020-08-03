@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from '../firebase';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import serviceRedirect from '../serviceRedirect';
 import Input from '../components/Inputs/Input';
@@ -11,6 +11,7 @@ import ErrorMessage from '../components/Messages/ErrorMessage';
 import Logo from '../components/Logos/Logo';
 import Root from '../components/Containers/Root';
 import SignForm from '../components/Containers/SignForm';
+import SignMessage from '../components/Messages/SignMessage';
 
 const SignUp = styled.main`
   background-color: #fff;
@@ -22,18 +23,6 @@ const SignUp = styled.main`
   align-items: center;
   justify-content: flex-end;
 `;
-
-const Paragraph = styled.p`
-  color: #0D0D0D;
-  font-size: 25px;
-  font-weight: 900;
-  margin-bottom: 15px;
-`;
-
-const STyledLink = styled(Link)`
-  color: #F28907;
-`;
-
 
 function Register(props) {
   const [err, setError] = useState(false);
@@ -76,7 +65,7 @@ function Register(props) {
           {err ? <ErrorMessage text="Favor insira seu e-mail corporativo." /> : ''}
           <SignButton type="submit" text="Cadastrar" />
         </SignForm>
-        <Paragraph>Já tem uma conta? <STyledLink to="/login">Faça login</STyledLink></Paragraph>
+        <SignMessage text={"Já tem uma conta?"} link={"/login"} linkText={"Faça login"} />
       </SignUp>
     </Root>
   );

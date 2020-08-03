@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import firebase from '../firebase';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import serviceRedirect from '../serviceRedirect';
 import Input from '../components/Inputs/Input';
@@ -10,6 +10,7 @@ import ErrorMessage from '../components/Messages/ErrorMessage';
 import Logo from '../components/Logos/Logo';
 import Root from '../components/Containers/Root';
 import SignForm from '../components/Containers/SignForm';
+import SignMessage from '../components/Messages/SignMessage';
 
 const SignIn = styled.main`
   background-color: #fff;
@@ -20,17 +21,6 @@ const SignIn = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const Paragraph = styled.p`
-  color: #0D0D0D;
-  font-size: 25px;
-  font-weight: 900;
-  margin-bottom: 45px;
-`;
-
-const STyledLink = styled(Link)`
-  color: #F28907;
 `;
 
 function Login(props) {
@@ -55,7 +45,7 @@ function Login(props) {
           {err ? <ErrorMessage text="Email e/ou senha incorretos." /> : ''}
           <SignButton type="submit" text="Entrar" />
         </SignForm>
-        <Paragraph> Não tem uma conta? <STyledLink to="/register">Cadastre-se</STyledLink></Paragraph>
+        <SignMessage text={"Não tem uma conta?"} link={"/register"} linkText={"Cadastre-se"} />
       </SignIn>
     </Root>
   );
