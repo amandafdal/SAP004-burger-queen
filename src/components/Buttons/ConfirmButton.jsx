@@ -8,7 +8,7 @@ const StyledBtn = styled.button`
   border-radius: 10px;
   width: max-content;
   height: 50px;
-  margin: 10px 10px 0px;
+  margin: 10px;
   padding: 10px;
   color: #ffffff;
   font-size: 24px;
@@ -16,6 +16,6 @@ const StyledBtn = styled.button`
   cursor: pointer;
 `;
 
-const ConfirmButton = (props) =>  <StyledBtn type={props.type}> {props.value} </StyledBtn>;
+const ConfirmButton = (props) =>  <StyledBtn type={props.type} onClick={props.handleClick}> {props.value} </StyledBtn>;
 
 export default ConfirmButton;

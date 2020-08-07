@@ -8,7 +8,7 @@ const StyledBtn = styled.button`
   border-radius: 10px;
   width: max-content;
   height: 50px;
-  margin: 10px 10px 0px;
+  margin: 10px;
   padding: 10px;
   color: #ffffff;
   font-size: 24px;
