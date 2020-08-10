@@ -36,7 +36,7 @@ function Notification() {
     <>
       <Container>
         <LinkS to="/menu">MENU</LinkS>
-        <LinkS to="/attendence">SAIR</LinkS>
+        <LinkS to="/attendence">FECHAR</LinkS>
       </Container>
       <Orders orders={orders} onClickOrderButton={orderClick} label="finalizado" />
     </>

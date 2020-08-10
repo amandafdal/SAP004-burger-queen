@@ -25,7 +25,7 @@ function Menu() {
     <Container>
       <LinkS to="/notification">NOTIFICAÇÕES</LinkS>
       <LinkS to="/historic">HISTÓRICO</LinkS>
-      <LinkS to="/attendence">SAIR</LinkS>
+      <LinkS to="/attendence">FECHAR</LinkS>
     </Container>
   );
 }
