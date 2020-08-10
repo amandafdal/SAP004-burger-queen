@@ -8,13 +8,21 @@ import Notification from '../../assets/img/notification.png';
 import SignOutIcon from '../../assets/icons/SignOutIcon.png';
 
 const StyledHeader = styled.header`
+  {
+    props.notification &&
+      justify-content: space-between;
+
+      .signOutIcon {
+        position: relative;
+      }
+  }
+
   position: relative;
   display: flex;
   align-items: center;
   background-color: #F2B90C;
   width: 100%;
   height: 60px;
-  flex-direction: space-between;
 
   .logo{
     height: 40px;
@@ -23,6 +31,7 @@ const StyledHeader = styled.header`
   .signOutIcon{
     height: 30px;
     margin: 0px 15px;
+    position: absolute;
   }
 
   .notification {
@@ -31,7 +40,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
   const history = useHistory();
   const signOut = (e) => {
     e.preventDefault();
@@ -43,9 +52,12 @@ const Header = () => {
     <StyledHeader>
       <img className="signOutIcon" src={SignOutIcon} alt="Sair" onClick={signOut} />
       <img className="logo" src={Logo} alt="logo" />
-      <Link to="/menu">
-        <img className="notification" src={Notification} alt="Notificações" />
-      </Link>
+      {
+        props.notification &&
+          <Link to="/menu">
+            <img className="notification" src={Notification} alt="Notificações" />
+          </Link>
+      }
     </StyledHeader>
   )
 }
