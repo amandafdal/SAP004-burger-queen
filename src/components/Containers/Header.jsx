@@ -28,7 +28,10 @@ const Header = () => {
   const signOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut()
-      .then(() => history.push("/login"))
+      .then(() => {
+        localStorage.clear();
+        history.push("/login");
+      })
   };
 
   return (

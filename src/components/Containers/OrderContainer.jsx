@@ -6,6 +6,7 @@ const StyledContainer = styled.section`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
+  min-width: 300px;
   width: max-content;
   height: fit-content;
   margin: 20px;
@@ -22,7 +23,7 @@ const StyledContainer = styled.section`
 
 const OrderContainer = (props) => {
   return (
-    <StyledContainer id="order-resume"> {props.children}</StyledContainer>
+    <StyledContainer> {props.children}</StyledContainer>
   )
 }
 
