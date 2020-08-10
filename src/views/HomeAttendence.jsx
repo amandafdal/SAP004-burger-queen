@@ -7,7 +7,7 @@ import Menu from '../components/Containers/Menu';
 function Home() {
   return (
     <Root>
-      <Header />
+      <Header notification="renderNotification" />
       <Menu />
     </Root>
   );
