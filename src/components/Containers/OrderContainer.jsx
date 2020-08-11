@@ -17,6 +17,7 @@ const StyledContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px 10px 0;
   }
 `;
 
