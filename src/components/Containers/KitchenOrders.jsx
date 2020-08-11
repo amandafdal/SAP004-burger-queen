@@ -60,7 +60,6 @@ const KitchenOrders = () => {
 
   return (
       <StyledMain>
-        {console.log(orders)}
         {
           orders.map(order => (
             <OrderContainer key={order.id}>
