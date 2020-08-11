@@ -40,8 +40,8 @@ function Login(props) {
       <SignIn>
         <Logo />
         <SignForm handleSubmit={signIn}>
-          <Input label="E-mail" type="email" name="email" autoComplete="email" />
-          <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" />
+          <Input label="E-mail" type="email" name="email" autoComplete="email" placeholder="seunome@burgerqueen.com"/>
+          <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" placeholder="* * * * * *" />
           {err ? <ErrorMessage text="Email e/ou senha incorretos." /> : ''}
           <SignButton type="submit" text="Entrar" />
         </SignForm>

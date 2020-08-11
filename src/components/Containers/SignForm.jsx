@@ -7,6 +7,7 @@ const StyledForm = styled.form`
   color: #0D0D0D;
   font-size: 25px;
   font-weight: 900;
+  width: 70%;
 `;
 
 const SignForm = (props) => {
