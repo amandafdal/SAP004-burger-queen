@@ -12,7 +12,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const LinkS = styled(Link)`
+const Links = styled(Link)`
   color: #fff;
   margin: 25px 0px;
   color: #F2B90C;
@@ -21,11 +21,12 @@ const LinkS = styled(Link)`
 `;
 
 function Menu() {
+  /* add renderização condicional */
   return (
     <Container>
-      <LinkS to="/notification">NOTIFICAÇÕES</LinkS>
-      <LinkS to="/historic">HISTÓRICO</LinkS>
-      <LinkS to="/attendence">FECHAR</LinkS>
+      <Links to="/notification">ENTREGA</Links>
+      <Links to="/historic">HISTÓRICO DE PEDIDOS</Links>
+      <Links to="/attendence">MENU</Links>
     </Container>
   );
 }
