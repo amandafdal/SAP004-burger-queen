@@ -18,7 +18,7 @@ const StyledContainer = styled.section`
     text-align: center;
     padding: 10px;
     margin-bottom: 25px;
-    border-radius: 40px 40px 0px 0px;
+    border-radius: 35px 35px 0px 0px;
     font-size: 30px;
     font-weight: 700;
   }

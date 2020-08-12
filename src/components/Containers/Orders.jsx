@@ -17,8 +17,6 @@ const StyledMain = styled.main`
 
 function Orders(props) {
   const totalTime = (initial, finaly) => {
-    console.log(initial.toDate().getTime());
-    console.log(finaly.toDate().getTime());
     const timeStampInitial = initial.toDate().getTime();
     const timeStampFinaly = finaly.toDate().getTime();
     const total = new Date(timeStampFinaly - timeStampInitial);
