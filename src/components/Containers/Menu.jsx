@@ -10,6 +10,7 @@ import ConfirmButton from '../Buttons/ConfirmButton'
 import ErrorMessage from '../Messages/ErrorMessage';
 import MenuContainer from '../Containers/MenuContainer';
 
+/* VERIFICAR REGRA DE ITENS ADICIONAIS */
 const Main = styled.main`
   width: 100%;
   height: fit-content;
