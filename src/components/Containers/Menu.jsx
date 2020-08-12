@@ -10,7 +10,6 @@ import ConfirmButton from '../Buttons/ConfirmButton'
 import ErrorMessage from '../Messages/ErrorMessage';
 import MenuContainer from '../Containers/MenuContainer';
 
-/* VERIFICAR REGRA DE ITENS ADICIONAIS */
 const Main = styled.main`
   width: 100%;
   height: fit-content;
@@ -18,16 +17,6 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Extras = styled.td`
-  width: 80px!important;
-  display: flex;
-  flex-direction: column;
-  label {
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 const Amount = styled.td`
@@ -148,20 +137,6 @@ const Menu = () => {
     })
   }
 
-  const setExtra = (item, extra, checked) => {
-    setCart({
-      ...cart,
-      [item]: {
-        ...cart[item],
-        valor: checked ? cart[item].valor + 1 : cart[item].valor - 1,
-        adicionais: {
-          ...cart[item].adicionais,
-          [extra]: checked
-        }
-      }
-    })
-  }
-
   const printOrder = () => {
     let line = [];
     let valor = [];
@@ -173,24 +148,6 @@ const Menu = () => {
         <tr>
           <Amount>{cart[item].quantidade}x</Amount>
           <td>{cart[item].nome}</td>
-          <Extras>
-            {
-              cart[item].categoria === 'hambúrguer' && cart[item].adicionais &&
-              Object
-                .keys(
-                  cart[item].adicionais
-                )
-                .map((adicional) => (
-                  <label>
-                    {adicional}
-                    <input
-                      type="checkbox"
-                      checked={cart[item].adicionais[adicional]}
-                      onChange={(e) => setExtra(item, adicional, e.currentTarget.checked)} />
-                  </label>
-                ))
-            }
-          </Extras>
           <td>R$ {cart[item].quantidade * cart[item].valor},00</td>
         </tr>
       )
