@@ -26,11 +26,10 @@ function Notification() {
     <Root>
       <Header notification="renderNotification" />
       <Title>HISTÓRICO DE PEDIDOS</Title>
-      <Orders orders={orders} />
+      <Orders orders={orders} time="renderTime"/>
     </Root>
   );
 }
-
 
 const connectedWithRouter = withRouter(Notification);
 export default connectedWithRouter;

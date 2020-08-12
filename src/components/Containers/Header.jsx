@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import styled, {css } from 'styled-components';
@@ -6,6 +6,7 @@ import firebase from '../../firebase';
 import Logo from '../../assets/img/logo-header1.png';
 import Notification from '../../assets/img/notification.png';
 import SignOutIcon from '../../assets/icons/SignOutIcon.png';
+import { getOrdersByStatus } from '../../services/Order';
 
 const StyledHeader = styled.header`
   position: relative;
@@ -21,6 +22,16 @@ const StyledHeader = styled.header`
   .signOutIcon {
     height: 30px;
     margin: 0px 15px;
+  }
+  .link {
+    position: relative;
+  }
+
+  .link::after {
+    content: attr(data-notification);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   ${ window.location.pathname === '/kitchen' 
   ? css`
@@ -40,6 +51,12 @@ const StyledHeader = styled.header`
 `;
 
 const Header = (props) => {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    return getOrdersByStatus('pronto', setOrders);
+  }, []);
+
   const history = useHistory();
   const signOut = (e) => {
     e.preventDefault();
@@ -56,9 +73,9 @@ const Header = (props) => {
       <img className="logo" src={Logo} alt="logo" />
       {
         props.notification &&
-          <Link to="/menu">
-            <img className="notification" src={Notification} alt="Notificações" />
-          </Link>
+        <Link to="/menu" className="link" data-notification={orders.length}>
+          <img className="notification" src={Notification} alt="Notificações" />
+        </Link>
       }
     </StyledHeader>
   )

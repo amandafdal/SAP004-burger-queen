@@ -208,18 +208,20 @@ const Menu = () => {
     e.preventDefault()
     const cliente = e.currentTarget.Cliente.value;
     const mesa = e.currentTarget.Mesa.value;
+    e.currentTarget.Cliente.value = '';
+    e.currentTarget.Mesa.value = '';
 
     Object.keys(cart).length === 0
-    ? setEmpty(true)
-    :firebase.firestore().collection('orders').doc().set({
-      cliente: cliente,
-      mesa: mesa,
-      pedido: cart,
-      status: 'preparando',
-      orderTime: new Date(),
-      deliverTime: null ,
-    })
-    .then(() => setCart({}))
+      ? setEmpty(true)
+      : firebase.firestore().collection('orders').doc().set({
+        cliente: cliente,
+        mesa: mesa,
+        pedido: cart,
+        status: 'preparando',
+        orderTime: new Date(),
+        deliverTime: null,
+      })
+        .then(() => setCart({}))
   }
   return (
     <>
