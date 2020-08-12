@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link, withRouter  } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { getOrdersByStatus } from '../../services/Order';
+import Root from '../../components/Containers/Root';
+import Header from '../../components/Containers/Header';
 import Orders from '../../components/Containers/Orders';
 
-const Container = styled.div`
-  width: 100%;
-  background-color: #0D0D0D;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const LinkS = styled(Link)`
-  color: #fff;
+const Title = styled.h1`
   margin: 25px 0px;
   color: #F2B90C;
   font-size: 30px;
   font-weight: 900;
+  width: 100%;
+  text-align: center;
 `;
 
 function Notification() {
@@ -29,13 +23,11 @@ function Notification() {
   }, []);
 
   return (
-    <>
-      <Container>
-        <LinkS to="/menu">MENU</LinkS>
-        <LinkS to="/attendence">FECHAR</LinkS>
-      </Container>
+    <Root>
+      <Header notification="renderNotification" />
+      <Title>HISTÓRICO DE PEDIDOS</Title>
       <Orders orders={orders} />
-    </>
+    </Root>
   );
 }
 

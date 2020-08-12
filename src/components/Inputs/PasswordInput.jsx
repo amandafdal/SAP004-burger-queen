@@ -4,19 +4,18 @@ import '../../assets/icons/style.css'
 
 const Label = styled.label`
   position: relative;
-
+  width: 100%;
   input {
     border: 2px solid #F28907;  
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     height: 80px;
-    width: 460px;
+    width: 100%;
     margin: 10px 0px;
     padding-left: 15px;
     font-size: 25px;
   }
-
   i {
     position: absolute;
     right: 20px;
