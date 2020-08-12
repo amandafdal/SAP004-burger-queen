@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledContainer = styled.section`
   width: 80%;
+  max-width: 620px;
   height: fit-content;
   display: flex;
   flex-direction: column;
