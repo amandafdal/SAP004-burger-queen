@@ -32,7 +32,14 @@ const StyledHeader = styled.header`
     position: absolute;
     top: 0;
     left: 0;
+    background-color: #F21F0C;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-weight: 700;
   }
+
   ${ window.location.pathname === '/kitchen' 
   ? css`
     .signOutIcon {
