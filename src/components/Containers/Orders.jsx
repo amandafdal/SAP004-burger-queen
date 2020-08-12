@@ -16,11 +16,25 @@ const StyledMain = styled.main`
 `;
 
 function Orders(props) {
+  const totalTime = (initial, finaly) => {
+    console.log(initial.toDate().getTime());
+    console.log(finaly.toDate().getTime());
+    const timeStampInitial = initial.toDate().getTime();
+    const timeStampFinaly = finaly.toDate().getTime();
+    const total = new Date(timeStampFinaly - timeStampInitial);
+    return `${total.getMinutes()}:${total.getSeconds()}`;
+  }
+
+
   return (
     <StyledMain>
       {
         props.orders.map(order => (
           <OrderContainer key={order.id}>
+            {
+              props.time &&
+              <p> Tempo: {totalTime(order.orderTime, order.deliverTime)}</p>
+            }
             <p>Cliente: {order.cliente}</p>
             <p>Mesa: {order.mesa}</p>
             <table>
@@ -41,12 +55,12 @@ function Orders(props) {
             </table>
             {
               props.label &&
-                <ConfirmButton handleClick={() => props.onClickOrderButton(order.id)} value={props.label} />
+              <ConfirmButton handleClick={() => props.onClickOrderButton(order.id)} value={props.label} />
             }
           </OrderContainer>
         ))
       }
-    </StyledMain>
+    </StyledMain >
   );
 }
 

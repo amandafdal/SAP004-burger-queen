@@ -17,5 +17,5 @@ export const getOrdersByStatus = (status, callback) => {
 
 export const updateOrderStatus = (order, status) => {
   firebase.firestore().collection('orders').doc(order)
-    .update(status ==='finalizado' ? { status } : { status, deliverTime: new Date() })
+    .update(status === 'finalizado' ? { status, deliverTime: new Date() } : { status })
 }

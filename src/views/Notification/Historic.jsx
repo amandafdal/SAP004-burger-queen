@@ -34,7 +34,7 @@ function Notification() {
         <LinkS to="/menu">MENU</LinkS>
         <LinkS to="/attendence">FECHAR</LinkS>
       </Container>
-      <Orders orders={orders} />
+      <Orders orders={orders} time="renderTime" />
     </>
   );
 }
