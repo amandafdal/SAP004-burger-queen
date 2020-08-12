@@ -13,6 +13,6 @@ const STyledLink = styled(Link)`
   color: #F28907;
 `;
 
-const SignMessage = (props) =>  <Paragraph> <p>{props.text} <STyledLink to={props.link}>{props.linkText}</STyledLink></p> </Paragraph>;
+const SignMessage = (props) =>  <Paragraph> {props.text} <STyledLink to={props.link}>{props.linkText}</STyledLink> </Paragraph>;
 
 export default SignMessage;
