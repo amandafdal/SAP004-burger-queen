@@ -16,6 +16,7 @@ const SignIn = styled.main`
   background-color: #fff;
   height: 780px;
   width: 80%;
+  max-width: 770px;
   margin-top: 180px;
   display: flex;
   flex-direction: column;
