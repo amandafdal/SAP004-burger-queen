@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {css } from 'styled-components';
 import firebase from '../../firebase';
 import Logo from '../../assets/img/logo-header1.png';
 import Notification from '../../assets/img/notification.png';
@@ -9,32 +9,20 @@ import SignOutIcon from '../../assets/icons/SignOutIcon.png';
 import { getOrdersByStatus } from '../../services/Order';
 
 const StyledHeader = styled.header`
-  {
-    props.notification &&
-      justify-content: space-between;
-
-      .signOutIcon {
-        position: relative;
-      }
-  }
-
   position: relative;
   display: flex;
   align-items: center;
   background-color: #F2B90C;
   width: 100%;
   height: 60px;
-
-  .logo{
+  .logo {
     height: 40px;
     margin: auto;
   }
-  .signOutIcon{
+  .signOutIcon {
     height: 30px;
     margin: 0px 15px;
-    position: absolute;
   }
-
   .link {
     position: relative;
   }
@@ -45,10 +33,20 @@ const StyledHeader = styled.header`
     top: 0;
     left: 0;
   }
-
-  .notification {
+  ${ window.location.pathname === '/kitchen' 
+  ? css`
+    .signOutIcon {
+      position: absolute;
+    }`
+  : css `
+    justify-content: space-between;
+    .signOutIcon {
+      position: relative;
+    }
+    .notification {
     width: 40px;
     margin: 0px 15px;
+    }`
   }
 `;
 

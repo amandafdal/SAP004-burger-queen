@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledContainer = styled.section`
   width: 80%;
+  max-width: 620px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -16,6 +17,7 @@ const StyledContainer = styled.section`
     width: 100%;
     text-align: center;
     padding: 10px;
+    margin-bottom: 25px;
     border-radius: 40px 40px 0px 0px;
     font-size: 30px;
     font-weight: 700;
@@ -23,6 +25,7 @@ const StyledContainer = styled.section`
   h2{
     font-size: 24px;
     font-weight: 700;
+    text-transform: capitalize;
   }
 `;
 

@@ -17,6 +17,7 @@ const SignUp = styled.main`
   background-color: #fff;
   height: 780px;
   width: 80%;
+  max-width: 770px;
   margin-top: 180px;
   display: flex;
   flex-direction: column;
@@ -58,9 +59,9 @@ function Register(props) {
       <SignUp>
         <Logo />
         <SignForm handleSubmit={signUp}>
-          <Input label="Nome" type="text" name="name" autoComplete="nome" />
-          <Input label="E-mail" type="email" name="email" autoComplete="email" />
-          <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" />
+          <Input label="Nome" type="text" name="name" autoComplete="nome" placeholder="Seu nome completo"/>
+          <Input label="E-mail" type="email" name="email" autoComplete="email" placeholder="seunome@burgerqueen.com"/>
+          <PasswordInput label="Senha" name="password" autoComplete="password" icon="icon-eye" placeholder="* * * * * *"/>
           <ServiceOpt />
           {err ? <ErrorMessage text="Favor insira seu e-mail corporativo." /> : ''}
           <SignButton type="submit" text="Cadastrar" />

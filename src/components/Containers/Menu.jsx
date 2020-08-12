@@ -238,13 +238,13 @@ const Menu = () => {
                       <td>{item.data().nome}</td>
                       <td>R$ {item.data().valor}</td>
                       <td>
-                        < CounterButton handleClick={() => addToCart(item)} value='+' />
+                        < CounterButton handleClick={() => delFromCart(item)} value='-' />
                         <Counter
                           type="number" min="0"
                           value={(cart[item.id] && cart[item.id].quantidade) || 0}
                           handleChange={(e) => setAmount(item, e.currentTarget.value)}
                         />
-                        < CounterButton handleClick={() => delFromCart(item)} value='-' />
+                        < CounterButton handleClick={() => addToCart(item)} value='+' />
                       </td>
                     </tr>
                   ))}
@@ -268,12 +268,12 @@ const Menu = () => {
                         <td>{item.data().nome}</td>
                         <td>R$ {item.data().valor}</td>
                         <td>
-                          <CounterButton handleClick={() => addToCart(item)} value='+' />
+                          <CounterButton handleClick={() => delFromCart(item)} value='-' />
                           <Counter
                             value={(cart[item.id] && cart[item.id].quantidade) || 0}
                             handleChange={(e) => setAmount(item, e.currentTarget.value)}
                           />
-                          <CounterButton handleClick={() => delFromCart(item)} value='-' />
+                          <CounterButton handleClick={() => addToCart(item)} value='+' />
                         </td>
                       </tr>
                     ))}
