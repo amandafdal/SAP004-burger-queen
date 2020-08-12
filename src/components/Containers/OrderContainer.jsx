@@ -7,7 +7,7 @@ const StyledContainer = styled.section`
   align-items: center;
   background-color: #fff;
   min-width: 300px;
-  width: max-content;
+  width: 75%;
   height: fit-content;
   margin: 20px;
   padding: 5px;
@@ -18,6 +18,9 @@ const StyledContainer = styled.section`
     flex-direction: column;
     align-items: center;
     padding: 10px 10px 0;
+  }
+  @media only screen and (min-width: 1024px) {
+    width: 560px;
   }
 `;
 
