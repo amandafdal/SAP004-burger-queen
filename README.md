@@ -5,7 +5,7 @@
 <p/>
 
 Com o final do isolamento e a chegada da vacina, as pessoas querem voltar para as coisas que faziam antigamente e por isso a hamburgueria Burger Queen teve uma
-crescente em seus números de clientes. Para suprir a demanda e oferecer um ótimo atendimento para todos a empresa resolveu inserir na linha de atendimento e cozinha um aplicativo para controlar o fluxo dos pedidos. 
+crescente em seus números de clientes. Para suprir a demanda e oferecer um ótimo atendimento para todos a empresa resolveu inserir na linha de atendimento e cozinha um [aplicativo](https://bqmenu.web.app/) para controlar o fluxo dos pedidos. 
 
 # Fluxo de desenvolvimento
 <p align="center">
